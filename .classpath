@@ -23,7 +23,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/user/Documents/KULIAH/Semester_2/DasarPBO/Tubes/dashboardApp/lib/sqlite-jdbc-3.49.1.0.jar"/>
+	<classpathentry kind="lib" path="./lib/sqlite-jdbc-3.49.1.0.jar"/>
 	<classpathentry kind="src" path="target/generated-sources/annotations">
 		<attributes>
 			<attribute name="optional" value="true"/>
