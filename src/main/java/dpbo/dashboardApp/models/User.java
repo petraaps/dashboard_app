@@ -1,3 +1,5 @@
+package dpbo.dashboardApp.models;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -5,14 +7,16 @@ import java.sql.Statement;
 import dpbo.dashboardApp.db.DatabaseManager;
 
 class User extends DatabaseManager {
-	private int id;
-	private String name;
-	private String email;
 	private Connection connection;
 
 	public User() {
 		super();
-		connection = super.getConnection();
+		
+		try {
+			this.connection = super.getConnection();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public int getId(int id) throws Exception {
