@@ -11,6 +11,7 @@ public class DatabaseManager {
 	private Connection connection;
 
 	public DatabaseManager() {
+
 		try {
 			Class.forName("org.sqlite.JDBC");
 			connection = DriverManager.getConnection(url);
@@ -21,6 +22,18 @@ public class DatabaseManager {
 		} catch (ClassNotFoundException e) {
 			System.err.println("SQLite JDBC Driver not found: " + e.getMessage());
 		}
+	}
+
+	public boolean isConnected() {
+		return isConnected;
+	}
+
+	public Connection getConnection() throws Exception {
+		if (!isConnected) {
+			throw new Exception("Database connection is not established.");
+		}
+
+		return connection;
 	}
 
 	public void initializeDatabase() throws Exception {
