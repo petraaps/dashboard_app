@@ -1,5 +1,10 @@
 package dpbo.dashboardApp.models;
 
-public class IProject {
+public interface IProject {
 
+    void addRevision(Revision revision);
+
+    void removeRevision(Revision revision);
+
+    void findRevision(String revisionId);
 }
