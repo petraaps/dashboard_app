@@ -1,54 +1,47 @@
 package dpbo.dashboardApp.models;
 
-import java.sql.Statement;
-import java.sql.Connection;
-import java.sql.ResultSet;
+import java.time.LocalDateTime;
 
-import dpbo.dashboardApp.db.DatabaseManager;
-
-public class Revision extends DatabaseManager {
-	private Connection connection;
-
-	public Revision() {
-		super();
-		try {
-			this.connection = super.getConnection();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+public class Revision {
+	private String id;
+	private String title;
+	private String description;
+	private String status;
+	private LocalDateTime createdAt;
+	public Revision(String id, String title, String description, String status, LocalDateTime createdAt) {
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.status = status;
+		this.createdAt = createdAt;
 	}
-
-	public int getId(int id) throws Exception {
-		Statement statement = connection.createStatement();
-	
-		ResultSet s = statement.executeQuery("SELECT id FROM Revision WHERE id = " + id);
-		if (s.next()) {
-			return s.getInt("id");
-		} else {
-			throw new Exception("Revision not found with id: " + id);
-		}
+	public String getId() {
+		return id;
 	}
-
-	public String getContent(int id) throws Exception {
-		Statement statement = connection.createStatement();
-		
-		ResultSet s = statement.executeQuery("SELECT content FROM Revision WHERE id = " + id);
-		if (s.next()) {
-			return s.getString("content");
-		} else {
-			throw new Exception("Revision not found with id: " + id);
-		}
+	public void setId(String id) {
+		this.id = id;
 	}
-
-	public String setContent(int id, String content) throws Exception {
-		Statement statement = connection.createStatement();
-		
-		int rowsAffected = statement.executeUpdate("UPDATE Revision SET content = '" + content + "' WHERE id = " + id);
-		if (rowsAffected > 0) {
-			return "Content updated successfully.";
-		} else {
-			throw new Exception("Revision not found with id: " + id);
-		}
+	public String getTitle() {
+		return title;
 	}
-
+	public void setTitle(String notes) {
+		this.title = title;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String desc) {
+		this.description = description;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	@Override
+	public String toString() {
+		return "Revision [id=" + id + ", title=" + title + ", description=" + description + ", status=" + status
+				+ ", createdAt=" + createdAt + "]";
+	}
 }
