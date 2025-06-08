@@ -21,21 +21,39 @@ public class DesktopProject extends Project {
 
     @Override
     public String toString() {
-        return super.toString() + ", OS: " + operationSystem;
+        try {
+            return super.toString() + ", OS: " + operationSystem;
+        } catch (Exception e) {
+            return "Error generating toString: " + e.getMessage();
+        }
     }
 
     @Override
     public void displayProjectDetails() {
-        System.out.println("Desktop Project Detail:\n" + this.toString());
+        try {
+            System.out.println("Desktop Project Detail:\n" + this.toString());
+        } catch (Exception e) {
+            System.out.println("Failed to display project details: " + e.getMessage());
+        }
     }
 
     @Override
     public double calculateEstimateBudget() {
-        return 1200.0 + getRevision().size() * 100;
+        try {
+            return 1200.0 + getRevision().size() * 100;
+        } catch (Exception e) {
+            System.out.println("Failed to calculate budget: " + e.getMessage());
+            return 0.0;
+        }
     }
 
     @Override
     public LocalDateTime calculateEstimateProjectComplete() {
-        return getDeadline().minusDays(1);
+        try {
+            return getDeadline().minusDays(1);
+        } catch (Exception e) {
+            System.out.println("Failed to calculate completion date: " + e.getMessage());
+            return LocalDateTime.now();
+        }
     }
 }

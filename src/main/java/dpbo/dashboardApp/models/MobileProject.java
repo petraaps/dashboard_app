@@ -21,21 +21,39 @@ public class MobileProject extends Project {
 
     @Override
     public String toString() {
-        return super.toString() + ", Platform: " + platform;
+        try {
+            return super.toString() + ", Platform: " + platform;
+        } catch (Exception e) {
+            return "Error generating toString: " + e.getMessage();
+        }
     }
 
     @Override
     public void displayProjectDetails() {
-        System.out.println("Mobile Project Detail:\n" + this.toString());
+        try {
+            System.out.println("Mobile Project Detail:\n" + this.toString());
+        } catch (Exception e) {
+            System.out.println("Failed to display project details: " + e.getMessage());
+        }
     }
 
     @Override
     public double calculateEstimateBudget() {
-        return 1500.0 + getRevision().size() * 200;
+        try {
+            return 1500.0 + getRevision().size() * 200;
+        } catch (Exception e) {
+            System.out.println("Failed to calculate budget: " + e.getMessage());
+            return 0.0;
+        }
     }
 
     @Override
     public LocalDateTime calculateEstimateProjectComplete() {
-        return getDeadline().minusDays(2);
+        try {
+            return getDeadline().minusDays(2);
+        } catch (Exception e) {
+            System.out.println("Failed to calculate completion date: " + e.getMessage());
+            return LocalDateTime.now();
+        }
     }
 }

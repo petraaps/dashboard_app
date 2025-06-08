@@ -21,22 +21,39 @@ public class WebProject extends Project {
 
     @Override
     public String toString() {
-        return super.toString() + ", Domain: " + domainName;
+        try {
+            return super.toString() + ", Domain: " + domainName;
+        } catch (Exception e) {
+            return "Error generating toString: " + e.getMessage();
+        }
     }
 
     @Override
     public void displayProjectDetails() {
-        System.out.println("Web Project Detail:\n" + this.toString());
+        try {
+            System.out.println("Web Project Detail:\n" + this.toString());
+        } catch (Exception e) {
+            System.out.println("Failed to display project details: " + e.getMessage());
+        }
     }
 
     @Override
     public double calculateEstimateBudget() {
-        // Contoh logika kasar
-        return 1000.0 + getRevision().size() * 150;
+        try {
+            return 1000.0 + getRevision().size() * 150;
+        } catch (Exception e) {
+            System.out.println("Failed to calculate budget: " + e.getMessage());
+            return 0.0;
+        }
     }
 
     @Override
     public LocalDateTime calculateEstimateProjectComplete() {
-        return getDeadline().minusDays(3);
+        try {
+            return getDeadline().minusDays(3);
+        } catch (Exception e) {
+            System.out.println("Failed to calculate completion date: " + e.getMessage());
+            return LocalDateTime.now();
+        }
     }
 }
